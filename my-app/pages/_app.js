@@ -5,10 +5,15 @@ import 'antd/dist/reset.css';
 import store from '../src/store';
 import MainLayout from '../src/components/layout/MainLayout';
 import AuthGuard from '../src/gaurds/AuthGuard';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>User Management App</title>
+      </Head>
       <ConfigProvider
         theme={{
           token: {

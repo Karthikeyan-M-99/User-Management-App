@@ -18,14 +18,19 @@ const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
 
   useEffect(() => {
     setIsInitialized(true);
-    if (!token && !isPublicRoute) {
-      router.replace('/login');
-    } else if (token && isPublicRoute) {
-      router.replace('/users');
+    
+    if (typeof window !== 'undefined') {
+      const storedToken = localStorage.getItem('token');
+      if (!storedToken && !isPublicRoute) {
+        router.replace('/login');
+      } else if (storedToken && isPublicRoute) {
+        router.replace('/users');
+      }
     }
-  }, [token, router, isPublicRoute]);
+  }, [isPublicRoute, router]);
 
-  if (!isInitialized) {
+  // Show loading state during SSR or initial client load
+  if (!isInitialized || typeof window === 'undefined') {
     return (
       <div style={{ 
         height: '100vh', 
