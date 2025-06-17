@@ -11,13 +11,13 @@ interface AuthGuardProps {
 const PUBLIC_ROUTES = ['/login', '/register'];
 
 const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const token = useSelector(selectAuthToken);
   const isPublicRoute = PUBLIC_ROUTES.includes(router.pathname);
 
   useEffect(() => {
-    setIsInitialized(true);
+    setMounted(true);
     
     if (typeof window !== 'undefined') {
       const storedToken = localStorage.getItem('token');
@@ -29,8 +29,7 @@ const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
     }
   }, [isPublicRoute, router]);
 
-  // Show loading state during SSR or initial client load
-  if (!isInitialized || typeof window === 'undefined') {
+  if (!mounted) {
     return (
       <div style={{ 
         height: '100vh', 

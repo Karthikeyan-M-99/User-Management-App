@@ -7,12 +7,6 @@ import AuthGuard from '../src/gaurds/AuthGuard';
 import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
-  const isServer = typeof window === 'undefined';
-
-  if (isServer) {
-    return null;
-  }
-
   return (
     <Provider store={store}>
       <Head>
