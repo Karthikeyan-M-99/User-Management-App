@@ -1,21 +1,6 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "my-app/package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/login",
-      "dest": "/login"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "my-app/$1"
-    }
-  ],
+  "rootDirectory": "my-app",
   "env": {
     "NEXT_PUBLIC_API_URL": "https://users-management-api.vercel.app"
   }
