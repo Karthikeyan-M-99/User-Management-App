@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "rootDirectory": "my-app",
   "env": {
     "NEXT_PUBLIC_API_URL": "https://users-management-api.vercel.app"
   }
